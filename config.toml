@@ -1,0 +1,74 @@
+baseurl = "https://blog.mr8ball.net"
+DefaultContentLanguage = "en"
+title = "mr8ball tech blog"
+theme = "beautifulhugo"
+metaDataFormat = "yaml"
+pygmentsStyle = "trac"
+pygmentsUseClasses = true
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+#pygmentsUseClassic = true
+#pygmentOptions = "linenos=inline"
+#disqusShortname = "XXX"
+#googleAnalytics = "XXX"
+
+[Params]
+#  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
+  subtitle = "A blog about my personal tech projects and experiences"
+  mainSections = ["post","posts"]
+  logo = "images/avatar-icon.jpg" # Expecting square dimensions
+  favicon = "images/avatar-icon.jpg"
+  dateFormat = "January 2, 2006"
+  rss = true
+  comments = true
+  readingTime = true
+  wordCount = true
+  useHLJS = true
+  socialShare = true
+  delayDisqus = true
+  showRelatedPosts = true
+  commit = "https://github.com/reymundbautista/blog/tree/"
+
+
+#enableGitInfo = true
+
+#  hideAuthor = true
+#  gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
+
+#[[Params.bigimg]]
+#  src = "img/triangle.jpg"
+#  desc = "Triangle"
+#[[Params.bigimg]]
+#  src = "img/sphere.jpg"
+#  desc = "Sphere"
+#  # position: see values of CSS background-position.
+#  position = "center top"
+#[[Params.bigimg]]
+#  src = "img/hexagon.jpg"
+#  desc = "Hexagon"
+
+[Author]
+  name = "Reymund Bautista"
+  website = "blog.mr8ball.net"
+  email = "reymund.bautista@gmail.com"
+  github = "ReymundBautista"
+  twitter = "@reymundbautista"
+  #reddit = "username"
+  linkedin = "reymundbautista"
+  #stackoverflow = "users/XXXXXXX/username"
+
+[[menu.main]]
+    name = "Blog"
+    url = ""
+    weight = 1
+
+# TODO: Add about page for myself
+# [[menu.main]]
+#     name = "About"
+#     url = "page/about/"
+#     weight = 3
+
+[[menu.main]]
+    name = "Tags"
+    url = "tags"
+    weight = 3
