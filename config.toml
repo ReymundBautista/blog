@@ -13,8 +13,7 @@ pygmentsCodefencesGuessSyntax = true
 #googleAnalytics = "XXX"
 
 [Params]
-#  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
-  subtitle = "A blog about my personal tech projects and experiences"
+  subtitle = "A blog about my tech projects and experiences"
   mainSections = ["post","posts"]
   logo = "images/avatar-icon.jpg" # Expecting square dimensions
   favicon = "images/avatar-icon.jpg"
@@ -50,7 +49,6 @@ enableGitInfo = true
 [Author]
   name = "Reymund Bautista"
   website = "blog.mr8ball.net"
-  email = "reymund.bautista@gmail.com"
   github = "ReymundBautista"
   twitter = "@reymundbautista"
   #reddit = "username"
@@ -72,3 +70,10 @@ enableGitInfo = true
     name = "Tags"
     url = "tags"
     weight = 3
+
+[deployment]
+
+[[deployment.targets]]
+name = "aws s3"
+URL = "s3://blog.mr8ball.net?region=us-east-2"
+cloudFrontDistributionID = "E4O2P62K2L6AY"
