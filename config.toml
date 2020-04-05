@@ -70,10 +70,3 @@ enableGitInfo = true
     name = "Tags"
     url = "tags/"
     weight = 3
-
-[deployment]
-
-[[deployment.targets]]
-name = "aws s3"
-URL = "s3://blog.mr8ball.net?region=us-east-2"
-cloudFrontDistributionID = "E4O2P62K2L6AY"
