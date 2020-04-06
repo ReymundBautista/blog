@@ -46,9 +46,10 @@ need to ensure that your client that pushes the objects to S3 must
 explicitly set the storage class.
 
 Another interesting thing was that I didn't have to make the bucket public. This
-meant users would not be able to bypass CloudFront which would in theory would
-maximize the benefits of using a CDN. This configuration, however, would later
-cause an unexpected issue with CloudFront which I will explain later.  
+meant users would not be able to bypass CloudFront and access S3 directly.
+This ensures that we maximize the benefits of using a CDN and minimize data 
+transfer costs. This configuration, however, would later cause an unexpected 
+issue with CloudFront which I will explain later.  
 
 ### CloudFront
 To satisfy my requirement of encrypting traffic with SSL/TLS, CloudFront was
