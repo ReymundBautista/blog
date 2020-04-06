@@ -36,8 +36,8 @@ initially decided to work with:
 
 ### S3
 Perfect for hosting a static web site for a really attractive price. 
-Since this was a static site that could be regenerated at anytime, uptime wasn't 
-a consideration. And since I was looking for a cost-effective solution, 
+Since this was a static site that could be regenerated at anytime, resiliency 
+wasn't a consideration. And since I was looking for a cost-effective solution, 
 `One Zone-IA` was the perfect storage class. The interesting thing I learned was 
 that you can't set a S3 bucket to a specific storage class. From the bucket 
 side, all you can do is set a `Lifecycle` transition policy. The gotcha, however, 
