@@ -1,14 +1,10 @@
 ---
-title: "Using AWS Cloudwatch Insights"
-author: ""
-type: ""
+title: Using AWS Cloudwatch Insights
 date: 2020-04-03T02:52:16-04:00
-subtitle: "To find the biggest users of NAT Gateway"
-image: ""
+subtitle: To find unexpected costs
 tags: ["aws", "cloudwatch", "cost analysis"]
 ---
 
-## Unexpected Costs
 If there is one thing I've learned from using AWS for the last few years, it's that there always seems to be high spend from unexpected sources. Recently, my company decided to put a concerted effort into reducing it's AWS spend. There were definitely obvious areas to reduce cost (e.g. right sizing), but there were was one cost that I found particulary interesting, a service named `EC2-Other`. Initially, I had no idea what resources would fall under this service, it turned out to be a variety of things. Using `Cost Explorer`, I was able to breakdown the cost to a more granular level with `Usage Type Group`. Eventually, I was able to pinpoint the largest contributor: `EC2: NAT Gateway - Data Processed`.
 
 ### What is NAT Gateway?
