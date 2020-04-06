@@ -1,7 +1,5 @@
 ---
-title: "How I provisioned this blog with AWS"
-author: ""
-type: ""
+title: How I provisioned this blog with AWS
 date: 2020-04-06T00:15:51-04:00
 tags: ["aws", "cloudfront", "lambda", "lambda@edge", "s3"]
 ---
@@ -15,9 +13,10 @@ tags: ["aws", "cloudfront", "lambda", "lambda@edge", "s3"]
 I've been using AWS for several years now so I figured that it would only be 
 appropriate if I provisioned this blog on AWS infrastructure. So why I am 
 writing about this? Well it's not to focus on the services themselves, but 
-rather to highlight some of the struggles I faced and some requirements that of
+rather to highlight some of the struggles I faced and some requirements that 
 I wasn't aware of.
 
+<!--more-->
 ## Design Considerations
 There were a few considerations that dictated which services I would end up
 using:

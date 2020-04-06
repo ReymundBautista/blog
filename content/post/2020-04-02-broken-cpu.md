@@ -1,14 +1,10 @@
 ---
 title: "Fixing a broken CPU"
-author: ""
-type: ""
 date: 2020-04-03T00:44:06-04:00
-subtitle: ""
-image: ""
+subtitle: "Why my computer wouldn't start"
 tags: ["hardware"]
 ---
 
-## Computer Won't Start
 About a year ago, my home server wouldn't start back up, with no power going to any component. I had come to the conclusion that the power supply was the culprit after testing it directly. So I purchased a new power supply and after replacing the old one, there was only an incremental improvement. I'd initially see the fans power on, but within 10 seconds, everything would shut off. I double and tripled checked the cable connections, but still no luck. Discouraged, I pretty much gave up for almost a year.
 
 ## Second Attempt
