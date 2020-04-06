@@ -55,10 +55,10 @@ issue with CloudFront which I will explain later.
 To satisfy my requirement of encrypting traffic with SSL/TLS, CloudFront was
 the logical choice. Additionally, as a CDN, it's perfect for a static site.
 One feature in particular that I found interesting was the `Origin Access 
-Identity` (OIA). This identity can be configured with a CloudFront distribution 
+Identity` (OAI). This identity can be configured with a CloudFront distribution 
 and can have IAM Permissions assigned to it in a S3 bucket policy.
 
-If you use OIA, then the S3 bucket must **not** be configured in static website 
+If you use OAI, then the S3 bucket must **not** be configured in static website 
 mode which means that the bucket can be private. Secondly, when you provide the
 origin URL, it must be in the S3 REST API endpoint format:
     
@@ -77,7 +77,7 @@ for awhile, I discovered that I could access the posts if I explicity added
 `index.html` to the end of the URL. With this info I was able to find an [AWS 
 article](https://aws.amazon.com/blogs/compute/implementing-default-directory-indexes-in-amazon-s3-backed-amazon-cloudfront-origins-using-lambdaedge/)
 explaining why the `default directory indexes` wasn't active. As I mentioned
-earlier, because I was using OIA, the S3 static site feature needed to be disabled.
+earlier, because I was using OAI, the S3 static site feature needed to be disabled.
 This also meant that `default directoy indexes` aren't enabled either. 
 Fortunately, the article provided a workaround even though it ended up being a
 bit of a hassle to implement.
