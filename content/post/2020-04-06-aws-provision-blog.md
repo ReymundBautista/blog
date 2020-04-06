@@ -38,14 +38,15 @@ initially decided to work with:
 ### S3
 Perfect for hosting a static web site for a really attractive price. 
 Since this was a static site that could be regenerated at anytime, uptime wasn't 
-a consideration, and I was looking for the cheapest solution, `One Zone-IA` 
-would be the perfect storage class. The intersting thing I learned was that you 
-can't just set a S3 bucket to a particular class. From the bucket side all you 
-can do is set a `Lifecycle` transition policy, but the gotcha is that the 
-minimum time you have to set is 30 days. This means that you need to make sure 
-that your client that is pushing the objects to S3 must set the storage class.
+a consideration. And since I was looking for a cost-effective solution, 
+`One Zone-IA` was the perfect storage class. The interesting thing I learned was 
+that you can't set a S3 bucket to a specific storage class. From the bucket 
+side, all you can do is set a `Lifecycle` transition policy. The gotcha, however, 
+is that the minimum time you must set is 30 days. This means that you 
+need to ensure that your client that pushes the objects to S3 must 
+explicitly set the storage class.
 
-Another thing I learned was that I didn't have to make the bucket public. This
+Another interesting thing was that I didn't have to make the bucket public. This
 meant users would not be able to bypass CloudFront which would in theory would
 maximize the benefits of using a CDN. This configuration, however, would later
 cause an unexpected issue with CloudFront which I will explain later.  
@@ -77,19 +78,19 @@ for awhile, I discovered that I could access the posts if I explicity added
 article](https://aws.amazon.com/blogs/compute/implementing-default-directory-indexes-in-amazon-s3-backed-amazon-cloudfront-origins-using-lambdaedge/)
 explaining why the `default directory indexes` wasn't active. As I mentioned
 earlier, because I was using OIA, the S3 static site feature needed to be disabled.
-This also means that `default directoy indexes` aren't enabled either. 
-Fortunately, the article provided a workaround even though it ended up beig a
+This also meant that `default directoy indexes` aren't enabled either. 
+Fortunately, the article provided a workaround even though it ended up being a
 bit of a hassle to implement.
 
 ### Lambda@Edge
 To workaround the issue, you can use `Lambda@Edge` which allows you to use a
 Lambda function with CloudFront. Since CloudFront only has so many capabilities,
 you can use [Lambda@Edge](https://aws.amazon.com/lambda/edge/) to further 
-optimize and enhance the performance of your web application. In my case, I 
+optimize and enhance the performance of your web applications. In my case, I 
 needed it to rewrite the origin URL's to ensure that `index.html` was appended 
-to the end of a URL slug. 
+to the end of all URL slugs. 
 
-For example, _domain/posts/topic/_ would be rewritten to 
+For example, _domain/posts/topic/_ would be rewritten as 
 _domain/posts/topic/index.html_.
 
 ### Implementing Lambda@Edge
@@ -105,7 +106,7 @@ to edge locations.
     `arn:aws:lambda:us-east-1:123456789012:function:TestFunction:2`
 
 ### Test your code!
-The article also provided a Node script that you could use to perform the 
+The AWS article also provided a sample Node script that you could use to perform the 
 rewrites. Little did I know that I made a copypasta mistake and accidentally
 left out the first character. This ends up being a painfully slow process to 
 troubleshoot because if you've ever iterated with CloudFront, you'll know that 
@@ -116,7 +117,7 @@ I eventually ran this command to test the syntax of a Node script:
     $ node --check index.js
 ```
 
-And this revealed that I had left out a single quote mark. SMH.
+This check revealed that I had left out a single quote mark. SMH.
 
 ## Conclusion
 This is actually a fairly simple setup now that I've learned my lessons. Like a
