@@ -14,7 +14,8 @@ I've been using AWS for several years now so I figured that it would only be
 appropriate if I provisioned this blog on AWS infrastructure. So why I am 
 writing about this? Well it's not to focus on the services themselves, but 
 rather to highlight some of the struggles I faced and some requirements that 
-I wasn't aware of.
+I wasn't aware of.  
+&nbsp;
 
 <!--more-->
 ## Design Considerations
@@ -24,7 +25,8 @@ using:
 1. My site will be static
 2. Traffic must be SSL/TLS
 3. Keep costs as low as possible
-4. Resiliency and uptime isn't important
+4. Resiliency and uptime isn't important  
+&nbsp;
 
 ## The Infrastructure
 With those design consideration in mind, these were the services that I 
@@ -32,7 +34,8 @@ initially decided to work with:
 
 * S3
 * CloudFront
-* ACM
+* ACM  
+&nbsp;
 
 ### S3
 Perfect for hosting a static web site for a really attractive price. 
@@ -50,6 +53,7 @@ meant users would not be able to bypass CloudFront and access S3 directly.
 This ensures that we maximize the benefits of using a CDN and minimize data 
 transfer costs. This configuration, however, would later cause an unexpected 
 issue with CloudFront which I will explain later.  
+&nbsp;
 
 ### CloudFront
 To satisfy my requirement of encrypting traffic with SSL/TLS, CloudFront was
@@ -62,13 +66,15 @@ If you use OAI, then the S3 bucket must **not** be configured in static website
 mode which means that the bucket can be private. Secondly, when you provide the
 origin URL, it must be in the S3 REST API endpoint format:
     
-_`s3-bucket-name`_.s3._`aws-region`_.amazonaws.com
+_`s3-bucket-name`_.s3._`aws-region`_.amazonaws.com  
+&nbsp;
 
 ### ACM
 A couple of things of note. First, the certificate must be generated in
 `us-east-1` in order to be accessible by CloudFront. Secondly, if you are using 
 an infrastructure-as-code tool like `Terraform`, you will have to provision the
-certificate manually due to some manual requirements.
+certificate manually due to some manual requirements.  
+&nbsp;
 
 ## Easy Right?
 The front page loaded so we're good? Not so fast. When I tried to browse to one 
@@ -80,7 +86,8 @@ explaining why the `default directory indexes` wasn't active. As I mentioned
 earlier, because I was using OAI, the S3 static site feature needed to be disabled.
 This also meant that `default directoy indexes` aren't enabled either. 
 Fortunately, the article provided a workaround even though it ended up being a
-bit of a hassle to implement.
+bit of a hassle to implement.  
+&nbsp;
 
 ### Lambda@Edge
 To workaround the issue, you can use `Lambda@Edge` which allows you to use a
@@ -91,7 +98,8 @@ needed it to rewrite the origin URL's to ensure that `index.html` was appended
 to the end of all URL slugs. 
 
 For example, _domain/posts/topic/_ would be rewritten as 
-_domain/posts/topic/index.html_.
+_domain/posts/topic/index.html_.  
+&nbsp;
 
 ### Implementing Lambda@Edge
 You set it up just like a normal Lambda function, but there are a couple of 
@@ -103,7 +111,8 @@ to edge locations.
 1. When it is assigned to a [Cache Behavior](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CacheBehavior.html)
 , you must provide the Lambda ARN with the specific version:
 
-    `arn:aws:lambda:us-east-1:123456789012:function:TestFunction:2`
+    `arn:aws:lambda:us-east-1:123456789012:function:TestFunction:2`  
+&nbsp;
 
 ### Test your code!
 The AWS article also provided a sample Node script that you could use to perform the 
@@ -111,13 +120,15 @@ rewrites. Little did I know that I made a copypasta mistake and accidentally
 left out the first character. This ends up being a painfully slow process to 
 troubleshoot because if you've ever iterated with CloudFront, you'll know that 
 changes usually take 5-10 minutes to replicate. As I was running out of options, 
-I eventually ran this command to test the syntax of a Node script:
+I eventually ran this command to test the syntax of a Node script:  
+&nbsp;
 
 ```bash
     $ node --check index.js
 ```
 
-This check revealed that I had left out a single quote mark. SMH.
+This check revealed that I had left out a single quote mark. SMH.  
+&nbsp;
 
 ## Conclusion
 This is actually a fairly simple setup now that I've learned my lessons. Like a
